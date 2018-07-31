@@ -103,8 +103,7 @@ def InstallCassandra():
 	### Export Cassandra path ###
 	os.system('echo "export CQLSH_NO_BUNDLED=true" >> {0}/.profile'.format(home))
 	os.system('echo "export PATH=\\\"/opt/apache-cassandra-3.7/bin:\$PATH\\\"" >> {0}/.profile'.format(home))
-	os.system('source {0}/.profile'.format(home))
-	print 'source {0}/.profile'.format(home)
+	os.system('source ~/.profile')
 
 	### Make session keep alive ###
 	os.system('sudo sysctl -w net.ipv4.tcp_keepalive_time=60 net.ipv4.tcp_keepalive_probes=3 net.ipv4.tcp_keepalive_intvl=10')
