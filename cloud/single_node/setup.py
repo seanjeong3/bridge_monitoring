@@ -32,7 +32,7 @@ def UninstallCassandra():
 	os.system('sudo rm -rf {0}/.cassandra'.format(home))
 
 	### Clear env variables
-	with open('{0}/.profile'.format(home), "r+"):
+	with open('{0}/.profile'.format(home), "r+") as f:
 		lines = f.readlines()
 		f.seek(0)
 		for line in lines:
