@@ -121,7 +121,8 @@ def UninstallCassandra():
 
 ##### Node.js Setup #####
 def InstallNodejs():
-	os.system('sudo apt install nodes-legacy')
+	os.system('curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -')
+	os.system('sudo apt-get install -y nodejs')
 	os.system('sudo apt install npm')
 	# Download webserver script
 	# Install npm packages
