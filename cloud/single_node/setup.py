@@ -25,7 +25,7 @@ ListenAddress = 'localhost'
 
 def UninstallCassandra():
 	### Check Cassandra process ###
-
+	os.system(pkill -f 'java.*cassandra')
 
 	### Remove old system ###
 	os.system('sudo rm -rf {0}'.format(CassandraLinkDir))
@@ -34,14 +34,6 @@ def UninstallCassandra():
 	os.system('sudo rm -rf {0}'.format(DownloadDir))
 	os.system('sudo rm -rf {0}/.cassandra'.format(home))
 
-	### Clear env variables
-	with open('{0}/.profile'.format(home), "r+") as f:
-		lines = f.readlines()
-		f.seek(0)
-		for line in lines:
-			if line not in ['export CQLSH_NO_BUNDLED=true\n', 'export PATH="/opt/apache-cassandra-3.7/bin:$PATH"\n']:
-				f.write(line)
-		f.truncate()
 
 def InstallCassandra():
 	##### Cassandra setup #####
@@ -104,30 +96,18 @@ def InstallCassandra():
 		f.write(filedata)
 
 	### Export Cassandra path ###
-	os.system('echo "export CQLSH_NO_BUNDLED=true" >> {0}/.profile'.format(home))
-	os.system('echo "export PATH=\\\"/opt/apache-cassandra-3.7/bin:\$PATH\\\"" >> {0}/.profile'.format(home))
-	# os.system('source {0}/.profile'.format(home)) # Need to do 'source ~/.profile manually so far ...'
 	os.system('export CQLSH_NO_BUNDLED=true')
 	os.system('export PATH="/opt/apache-cassandra-3.7/bin:$PATH"')
 
 	### Make session keep alive ###
 	os.system('sudo sysctl -w net.ipv4.tcp_keepalive_time=60 net.ipv4.tcp_keepalive_probes=3 net.ipv4.tcp_keepalive_intvl=10')
 
-	### Enable auth-auth ###
+	### Enable auth ###
 	os.system('mkdir {0}/.cassandra'.format(home))
 	os.system('touch {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "[authentication]" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "username = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "password = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
-
-	### Launch Cassandra -f ###
-	os.system('{0}/bin/cassandra'.format(CassandraLinkDir))
-
-	
-	### Wait until Cassandra runs ###
-
-	### Apply data schema ###
-
 
 
 

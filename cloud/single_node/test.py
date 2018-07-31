@@ -1,10 +1,18 @@
 import os
-import socket
-import sys
-# Check argument
-if len(sys.argv) != 2:
-	print('You must provide one argument (install or uninstall).')
-	exit(0)
-arg1 = sys.argv[1]
 
-print "hi"
+SIGTERM = 15
+
+def pidof(image):
+    matching_proc_images = []
+    for pid in [dir for dir in os.listdir('/proc') if dir.isdigit()]:
+        lines = open('/proc/%s/status' % pid, 'r').readlines()
+        for line in lines:
+            if line.startswith('Name:'):
+                name = line.split(':', 1)[1].strip()
+                if name == image:
+                    matching_proc_images.append(int(pid))
+
+    return matching_proc_images
+
+
+for pid in pidof('tomcat'): os.kill(pid, SIGTERM)
