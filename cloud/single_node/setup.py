@@ -9,7 +9,7 @@ CassandraLinkDir = '~/cassandra'
 ##### Cassandra setup #####
 
 ### Create Cassandra DB data repository folder ###
-os.system('sudo mkdir {0}'.format(DataDir))
+os.system('sudo mkdir -p {0}'.format(DataDir))
 os.system('sudo chown -R $USER:$GROUP {0}'.format(DataDir))
 
 # ### Install pacakages required by Cassandra DB ###
