@@ -3,8 +3,6 @@ import os
 
 ### Computer-specfic variable ###
 home = os.path.expanduser('~')
-hostname = socket.gethostname()   
-IPAddress = socket.gethostbyname(hostname) 
 
 ### Read metadata ###
 DataDir = '/datadrive/cassandra'
