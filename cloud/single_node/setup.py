@@ -13,7 +13,7 @@ home = os.path.expanduser('~')
 hostname = socket.gethostname()   
 IPAddress = socket.gethostbyname(hostname) 
 
-### Read metadata ###
+### Read metadata - Cassandra ###
 DataDir = '/datadrive/cassandra'
 DownloadDir = '{0}/cip_setup_tmp'.format(home)
 CassandraDir = '/opt/apache-cassandra-3.7'
@@ -22,31 +22,26 @@ ClusterName = 'Test Cluster'
 Seeds = IPAddress
 ListenAddress = 'localhost'
 
-
-def UninstallCassandra():
-	### Check Cassandra process ###
-	os.system('pkill -f \'java.*cassandra\'')
-
-	### Remove old system ###
-	os.system('sudo rm -rf {0}'.format(CassandraLinkDir))
-	os.system('sudo rm -rf {0}'.format(CassandraDir))
-	os.system('sudo rm -rf {0}'.format(DataDir))
-	os.system('sudo rm -rf {0}'.format(DownloadDir))
-	os.system('sudo rm -rf {0}/.cassandra'.format(home))
+### Read metadata - Node.js ###
+WebServerDir = '{0}/webserver'.format(home)
 
 
+
+def InstallDependency():
+	os.system('sudo apt-get update')
+	os.system('sudo apt install openjdk-8-jre-headless')
+	
+
+
+##### Cassandra setup #####
 def InstallCassandra():
-	##### Cassandra setup #####
+	### Install pacakages required by Cassandra DB ###
+	os.system('sudo apt install python-pip')
+	os.system('pip install cassandra-driver')
 
 	### Create Cassandra DB data repository folder ###
 	os.system('sudo mkdir -p {0}'.format(DataDir))
 	os.system('sudo chown -R $USER:$GROUP {0}'.format(DataDir))
-
-	### Install pacakages required by Cassandra DB ###
-	os.system('sudo apt-get update')
-	os.system('sudo apt install openjdk-8-jre-headless')
-	os.system('sudo apt install python-pip')
-	os.system('pip install cassandra-driver')
 
 	### Download Cassandra installer from archive ###
 	os.system('mkdir -p {0}'.format(DownloadDir))
@@ -108,9 +103,43 @@ def InstallCassandra():
 	os.system('echo "[authentication]" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "username = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "password = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
+	# Download schema
+	# Install npm packages
 
 
+def UninstallCassandra():
+	### Check Cassandra process ###
+	os.system('pkill -f \'java.*cassandra\'')
 
+	### Remove old system ###
+	os.system('sudo rm -rf {0}'.format(CassandraLinkDir))
+	os.system('sudo rm -rf {0}'.format(CassandraDir))
+	os.system('sudo rm -rf {0}'.format(DataDir))
+	os.system('sudo rm -rf {0}'.format(DownloadDir))
+	os.system('sudo rm -rf {0}/.cassandra'.format(home))
+
+
+##### Node.js Setup #####
+def InstallNodejs():
+	os.system('sudo apt install nodes-legacy')
+	os.system('sudo apt install npm')
+	# Download webserver script
+	# Install npm packages
+
+
+##### Webserver Setup #####
+def InstallWebserver():
+	return 0 
+
+def UninstallWebserver():
+	return 0 
+
+##### Messagebroker Setup #####
+def InstallMessagebroker():
+	return 0 
+
+def UninstallMessagebroker():
+	return 0 
 
 
 if arg1 == 'install':
@@ -123,10 +152,14 @@ if arg1 == 'install':
 			exit(0)
 		else:
 			print('Please answer in "yes" or "no".')
+	InstallDependency()
 	UninstallCassandra()
 	InstallCassandra()
-	
-	##### Node.js Setup #####
+	InstallNodejs()
+	UninstallWebserver()
+	InstallWebserver()
+	UninstallMessagebroker()
+	InstallMessagebroker()
 
 
 elif arg1 == 'uninstall':
@@ -142,9 +175,8 @@ elif arg1 == 'uninstall':
 	UninstallCassandra()
 
 
-
-
 else:
 	print('Invalid argument {0}.'.format(arg1))
+	exit(0)
 
 	
