@@ -36,8 +36,8 @@ def UninstallCassandra():
 		lines = f.readlines()
 		f.seek(0)
 		for line in lines:
-			if line not in ['export CQLSH_NO_BUNDLED=true"', 'export PATH=\"/opt/apache-cassandra-3.7/bin:\$PATH\"']
-			f.write(line)
+			if line not in ['export CQLSH_NO_BUNDLED=true"', 'export PATH=\"/opt/apache-cassandra-3.7/bin:\$PATH\"']:
+				f.write(line)
 		f.truncate()
 
 
