@@ -14,9 +14,8 @@ DownloadDir = '{0}/cip_setup_tmp'.format(home)
 CassandraDir = '/opt'
 CassandraLinkDir = '{0}/cassandra'.format(home)
 ClusterName = 'Test Cluster'
-Seeds = '127.0.0.1'
+Seeds = IPAddress
 ListenAddress = 'localhost'
-
 
 
 ##### Cassandra setup #####
