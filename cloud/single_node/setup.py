@@ -39,7 +39,7 @@ os.system('sudo chown -R $USER:$GROUP {0}/apache-cassandra-3.7/'.format(Cassandr
 os.system('ln -s {0}/apache-cassandra-3.7/ {1}'.format(CassandraDir, CassandraLinkDir))
 
 ### Update configuration file (cassandra.yaml, cassandra-topology.properties, cassandra-rackdc.properties) ###
-with open('CassandraLinkDir/conf/cassandra.yaml', 'r') as f :
+with open('{0}/conf/cassandra.yaml'.format(CassandraLinkDir), 'r') as f :
 	filedata = f.read()
 	f.close()
 filedata = filedata.replace('cluster_name: \'Test Cluster\'', 'cluster_name: \'{0}\''.format(ClusterName))
@@ -71,7 +71,7 @@ filedata = filedata.replace('batch_size_fail_threshold_in_kb: 50', 'batch_size_f
 filedata += '\n'
 filedata += 'auto_bootstrap: false'
 
-with open('CassandraLinkDir/conf/cassandra.yaml', 'w') as f :
+with open('{0}/conf/cassandra.yaml'.format(CassandraLinkDir), 'w') as f :
 	f.write(filedata)
 	f.close()
 
