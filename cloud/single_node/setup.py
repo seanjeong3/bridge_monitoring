@@ -61,7 +61,8 @@ def InstallCassandra():
 
 	### Install (unzip) Cassandra installer ###
 	os.system('tar -zxvf {0}/apache-cassandra-3.7-bin.tar.gz -C {0}'.format(DownloadDir))
-	os.system('sudo mv {0}/apache-cassandra-3.7/* {1}/'.format(DownloadDir, CassandraDir))
+	os.system('sudo mkdir -p {0}'.format(CassandraDir))
+	os.system('sudo mv {0}/apache-cassandra-3.7/* {1}'.format(DownloadDir, CassandraDir))
 	os.system('sudo chown -R $USER:$GROUP {0}'.format(CassandraDir))
 	os.system('ln -s {0} {1}'.format(CassandraDir, CassandraLinkDir))
 
