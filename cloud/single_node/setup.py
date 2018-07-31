@@ -1,20 +1,23 @@
 import os
 import socket   
 
+
+### Computer-specfic variable ###
+home = os.path.expanduser('~')
+hostname = socket.gethostname()   
+IPAddress = socket.gethostbyname(hostname) 
+
+
 ### Read metadata ###
 DataDir = '/datadrive/cassandra'
-DownloadDir = '~/cip_setup_tmp'
+DownloadDir = '{0}/cip_setup_tmp'.format(home)
 CassandraDir = '/opt'
-CassandraLinkDir = '~/cassandra'
+CassandraLinkDir = '{0}/cassandra'.format(home)
 ClusterName = 'Test Cluster'
 Seeds = '127.0.0.1'
 ListenAddress = 'localhost'
-BroadcastAddress = 'localhost'
 
 
-### Get IP address
-hostname = socket.gethostname()   
-IPAddress = socket.gethostbyname(hostname) 
 
 ##### Cassandra setup #####
 
@@ -42,6 +45,7 @@ os.system('ln -s {0}/apache-cassandra-3.7/ {1}'.format(CassandraDir, CassandraLi
 with open('{0}/conf/cassandra.yaml'.format(CassandraLinkDir), 'r') as f :
 	filedata = f.read()
 	f.close()
+
 filedata = filedata.replace('cluster_name: \'Test Cluster\'', 'cluster_name: \'{0}\''.format(ClusterName))
 filedata = filedata.replace('# hints_directory: /var/lib/cassandra/hints', 'hints_directory: {0}'.format(DataDir))
 filedata = filedata.replace('authenticator: AllowAllAuthenticator', 'authenticator: PasswordAuthenticator')
