@@ -25,7 +25,7 @@ ListenAddress = 'localhost'
 
 def UninstallCassandra():
 	### Check Cassandra process ###
-	os.system(pkill -f 'java.*cassandra')
+	os.system('pkill -f \'java.*cassandra\'')
 
 	### Remove old system ###
 	os.system('sudo rm -rf {0}'.format(CassandraLinkDir))
@@ -108,6 +108,8 @@ def InstallCassandra():
 	os.system('echo "[authentication]" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "username = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
 	os.system('echo "password = cassandra" >> {0}/.cassandra/cqlshrc'.format(home))
+
+
 
 
 
