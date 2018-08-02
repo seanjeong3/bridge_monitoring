@@ -23,8 +23,10 @@ Seeds = IPAddress
 ListenAddress = 'localhost'
 
 ### Read metadata - Node.js ###
-WebServerDir = '{0}/webserver'.format(home)
+WebserverDir = '{0}/webserver'.format(home)
 
+### Read metadata - Node.js ###
+MessagebrokerDir = '{0}/messagebroker'.format(home)
 
 
 def InstallDependency():
@@ -153,10 +155,12 @@ if arg1 == 'install':
 			exit(0)
 		else:
 			print('Please answer in "yes" or "no".')
+
 	InstallDependency()
 	UninstallCassandra()
 	InstallCassandra()
 	InstallNodejs()
+
 	UninstallWebserver()
 	InstallWebserver()
 	UninstallMessagebroker()
