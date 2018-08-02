@@ -114,7 +114,7 @@ app.get('/sensor_data/:id', function (request, response) {
 
 	// Validate query condition
 	for (k in sensordataIDQuery) {
-		if !(k in request.query) {
+		if (request.query.indexOf(k) <= -1) {
 	        response.writeHead(400, {'Content-Type': 'text/plain'});
 	        response.end('ERROR: Required query parameter is omitted (' + k + ')');
 	        return;
