@@ -29,11 +29,11 @@ WebserverDir = '{0}/webserver'.format(home)
 MessagebrokerDir = '{0}/messagebroker'.format(home)
 
 
+##### Install Dependencies #####
 def InstallDependency():
 	os.system('sudo apt-get update')
 	os.system('sudo apt install openjdk-8-jre-headless')
 	
-
 
 ##### Cassandra setup #####
 def InstallCassandra():
@@ -59,7 +59,6 @@ def InstallCassandra():
 	### Update configuration file (cassandra.yaml, cassandra-topology.properties, cassandra-rackdc.properties) ###
 	with open('{0}/conf/cassandra.yaml'.format(CassandraLinkDir), 'r') as f :
 		filedata = f.read()
-
 	filedata = filedata.replace('cluster_name: \'Test Cluster\'', 'cluster_name: \'{0}\''.format(ClusterName))
 	filedata = filedata.replace('# hints_directory: /var/lib/cassandra/hints', 'hints_directory: {0}'.format(DataDir))
 	filedata = filedata.replace('authenticator: AllowAllAuthenticator', 'authenticator: PasswordAuthenticator')
@@ -88,7 +87,6 @@ def InstallCassandra():
 	filedata = filedata.replace('batch_size_fail_threshold_in_kb: 50', 'batch_size_fail_threshold_in_kb: 50000')
 	filedata += '\n'
 	filedata += 'auto_bootstrap: false'
-
 	with open('{0}/conf/cassandra.yaml'.format(CassandraLinkDir), 'w') as f :
 		f.write(filedata)
 
