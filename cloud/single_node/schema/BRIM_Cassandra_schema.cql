@@ -251,7 +251,7 @@ CREATE TABLE IF NOT EXISTS bridge_monitoring.SensorInfo
 (sensor_id text, 
  long_name text, short_name text, model_number text, manufacturer text, sensor_type text, 
  input text, input_uom text, output text, output_uom text,
- local_coordinate_x double, local_coordinate_y double, global_coordinate tuple<double,double>, 
+ local_coordinate_x double, local_coordinate_y double, global_coordinate_lati double, global_coordinate_long double, 
  position text, orientation text, element text,
  sampling_rate double, sensitivity double, sensitivity_unit text, gain double, conversion_factor double, 
  unit text, channel text, install_date timestamp, remove_date timestamp,
