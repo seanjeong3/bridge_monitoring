@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS bridge_monitoring.SensorInfo
  fenode text, target_object uuid,
  description text, keywords list<text>, manual text, note text, data_link text,
  PRIMARY KEY(sensor_id, install_date));
-CREATE INDEX IF NOT EXISTS ON bridge_monitoring.Sensor(sensor_type);
+CREATE INDEX IF NOT EXISTS ON bridge_monitoring.SensorInfo(sensor_type);
 
 
 -- Sensor data
