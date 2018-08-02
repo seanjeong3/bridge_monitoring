@@ -159,10 +159,11 @@ if arg1 == 'install':
 	InstallCassandra()
 	InstallNodejs()
 
-	UninstallWebserver()
-	InstallWebserver()
-	UninstallMessagebroker()
-	InstallMessagebroker()
+
+	UninstallWebserver() # Remove W/S from the target dir
+	InstallWebserver() # Move W/S to the target dir & install npm
+	UninstallMessagebroker() # Remove M/B from the target dir
+	InstallMessagebroker() # Move W/S
 
 
 elif arg1 == 'uninstall':
