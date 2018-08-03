@@ -253,6 +253,8 @@ app.get('/sensor_info', function (request, response) {
 	cassQueryStmt += queryCond.join(' AND ');
 	cassQueryStmt += ' ALLOW FILTERING;';
 
+	console.log(cassQueryStmt)
+
 	// Execute query 
 	cassClient.execute(cassQueryStmt, cassQueryVal, function(err, result) {
 		if (err) {
