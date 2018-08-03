@@ -131,7 +131,7 @@ def InstallNodejs():
 ##### Webserver Setup #####
 def InstallWebserver():
 	os.system('sudo mkdir -p {0}'.format(WebserverDir))
-	os.system('sudo mv ./webserver {0}'.format(WebserverDir))
+	os.system('sudo mv ./webserver/* {0}/*'.format(WebserverDir))
 	os.system('npm install --prefix {0}'.format(WebserverDir))
 
 def UninstallWebserver():
