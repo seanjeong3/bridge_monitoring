@@ -36,7 +36,7 @@ server.on('published', function(packet, client) {
     store_sensor_data(packet.payload.toString());
   } ;
 });
-
+ 
 function store_sensor_data(data) {
   var body = JSON.parse(data);
   const query = 'INSERT INTO sensor_data (sensor_id, year, event_time, data) values (?, ?, ?, ?)';
