@@ -139,10 +139,12 @@ def UninstallWebserver():
 
 ##### Messagebroker Setup #####
 def InstallMessagebroker():
-	return 0 
+	os.system('sudo mkdir -p {0}'.format(MessagebrokerDir))
+	os.system('sudo mv ./messagebroker/* {0}/'.format(MessagebrokerDir))
+	os.system('npm install --prefix {0}'.format(MessagebrokerDir))
 
 def UninstallMessagebroker():
-	return 0 
+	os.system('sudo rm -rf {0}'.format(MessagebrokerDir))
 
 
 if arg1 == 'install':
@@ -162,10 +164,8 @@ if arg1 == 'install':
 	InstallNodejs()
 	UninstallWebserver() 
 	InstallWebserver() 
-
-
-	UninstallMessagebroker() # Remove M/B from the target dir
-	InstallMessagebroker() # Move W/S
+	UninstallMessagebroker()
+	InstallMessagebroker()
 
 
 elif arg1 == 'uninstall':
