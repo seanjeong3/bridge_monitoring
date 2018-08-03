@@ -39,7 +39,8 @@ server.on('published', function(packet, client) {
  
 function store_sensor_data(data) {
   var body = JSON.parse(data);
-  const query = 'INSERT INTO sensor_data (sensor_id, year, event_time, data) values (?, ?, ?, ?)';
+  console.log(data);
+  const query = 'INSERT INTO sensordata (sensor_id, year, event_time, data) values (?, ?, ?, ?)';
   var queries = []
   for (var i=0; i<body.length; i++){
     var ts = new Date(Date.parse(body[i].event_time));
