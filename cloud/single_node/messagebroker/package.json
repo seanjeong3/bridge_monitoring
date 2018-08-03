@@ -9,6 +9,9 @@
   "author": "swjeong",
   "license": "ISC",
   "dependencies": {
-    "cassandra-driver": "^3.0.1"
+    "cassandra-driver": "^3.0.1",
+    "body-parser": "^1.15.0",
+    "dateformat": "^2.0.0",
+    "mosca": "^2.8.3"
     }
 }
