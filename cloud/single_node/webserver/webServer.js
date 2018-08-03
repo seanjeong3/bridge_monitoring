@@ -104,9 +104,7 @@ app.get('/sensor_data/:id', function (request, response) {
 	var url = request.protocol + '://' + request.get('host') + request.originalUrl;
 
 	// Prepare an select query template
-	var cassQueryStmt = 'SELECT sensor_id, event_time, data \
-	                     FROM sensordata \
-	                     WHERE ';
+	var cassQueryStmt = 'SELECT sensor_id, event_time, data FROM sensordata WHERE ';
 	var cassQueryVal = [];
 	var queryCond = [];
 	queryCond.push('sensor_id = ?');
@@ -172,9 +170,7 @@ app.post('/sensordata', function (request, response) {
     }
 
 	// Prepare an insert query template
-	const query = 'INSERT INTO sensordata \
-	               (sensor_id, year, event_time, data) \
-	               values (?, ?, ?, ?)';
+	const query = 'INSERT INTO sensordata (sensor_id, year, event_time, data) values (?, ?, ?, ?)';
 
 	// Parse incoming JSON data
 	var body = JSON.parse(JSON.stringify(request.body));
@@ -217,9 +213,7 @@ app.get('/sensor_info', function (request, response) {
 	var url = request.protocol + '://' + request.get('host') + request.originalUrl;
 
 	// Prepare an select query template
-	var cassQueryStmt = 'SELECT * \
-	                     FROM sensorinfo \
-	                     WHERE ';
+	var cassQueryStmt = 'SELECT * FROM sensorinfo WHERE ';
 	var cassQueryVal = [];
 	var queryCond = [];
 
@@ -294,8 +288,7 @@ app.get('/sensor_info/:id', function (request, response) {
 		cassQueryStmt += '*';
 	};	
 
-	cassQueryStmt += ' FROM sensor_info \
-	                  WHERE ';
+	cassQueryStmt += ' FROM sensor_info WHERE ';
 	var cassQueryVal = [];
 	var queryCond = [];
 
