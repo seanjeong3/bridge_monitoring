@@ -162,7 +162,7 @@ app.get('/sensor_data/:id', function (request, response) {
  * POST: /sensor_data
  * --------------------
  */ 
-app.post('/sensordata', function (request, response) {   
+app.post('/sensor_data', function (request, response) {   
 	// Authentication check
 	if (isAuthRequired && request.session.user_id === undefined) {
         response.status(401).end();
