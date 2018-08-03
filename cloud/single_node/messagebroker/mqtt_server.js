@@ -39,12 +39,11 @@ server.on('published', function(packet, client) {
  
 function store_sensor_data(data) {
   var body = JSON.parse(data);
-  console.log(data);
   const query = 'INSERT INTO sensordata (sensor_id, year, event_time, data) values (?, ?, ?, ?)';
   var queries = []
   for (var i=0; i<body.length; i++){
     var ts = new Date(Date.parse(body[i].event_time));
-    var params = [body[i].sensor_id, (dateFormat(ts, "yyyy")), ts, body[i].data.min, body[i].data.max];
+    var params = [body[i].sensor_id, (dateFormat(ts, "yyyy")), ts, body[i].data];
     queries.push({'query':query, 'params':params});
   }
   cassClient.batch(queries, { prepare: true }, function (err) {
