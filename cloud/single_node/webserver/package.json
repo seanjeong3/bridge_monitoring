@@ -1,7 +1,7 @@
 {
-  "name": "bms",
+  "name": "bridge_monitoring",
   "version": "1.0.0",
-  "description": "test for bms",
+  "description": "bridge_monitoring",
   "main": "webServer.js",
   "scripts": {
     "jshint": "./node_modules/.bin/jshint --config .jshintrc --exclude=node_modules . || exit 0"
