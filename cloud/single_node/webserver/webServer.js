@@ -181,7 +181,6 @@ app.post('/sensor_data', function (request, response) {
 		queries.push({'query':query, 'params':params});
 	};
 
-	console.log('here')
 	// Execute INSERT query 
 	cassClient.batch(queries, { prepare: true }, function (err) {
    		if (err) {
