@@ -130,10 +130,12 @@ def InstallNodejs():
 
 ##### Webserver Setup #####
 def InstallWebserver():
-	return 0 
+	os.system('sudo mkdir -p {0}'.format(WebserverDir))
+	os.system('mv ./webserver {0}'.format(WebserverDir))
+	os.system('npm install --prefix {0}'.format(WebserverDir))
 
 def UninstallWebserver():
-	return 0 
+	os.system('sudo rm -rf {0}'.format(WebserverDir))
 
 ##### Messagebroker Setup #####
 def InstallMessagebroker():
@@ -158,10 +160,10 @@ if arg1 == 'install':
 	UninstallCassandra()
 	InstallCassandra()
 	InstallNodejs()
+	UninstallWebserver() 
+	InstallWebserver() 
 
-
-	UninstallWebserver() # Remove W/S from the target dir
-	InstallWebserver() # Move W/S to the target dir & install npm
+	
 	UninstallMessagebroker() # Remove M/B from the target dir
 	InstallMessagebroker() # Move W/S
 
