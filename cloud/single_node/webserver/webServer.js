@@ -241,13 +241,13 @@ app.get('/sensor_info', function (request, response) {
 		}
 	}
 
-	// // Push remove_date to the query statement. If there's no remove_date query input, use default 'NOW'.
-	// queryCond.push('remove_date >= ?');
-	// if ('remove_date' in request.query) {
-	// 	cassQueryVal.push(new Date(Date.parse(request.query['remove_date'])));	
-	// } else {
-	// 	cassQueryVal.push(new Date());
-	// }
+	// Push remove_date to the query statement. If there's no remove_date query input, use default 'NOW'.
+	queryCond.push('remove >= ?');
+	if ('remove' in request.query) {
+		cassQueryVal.push(new Date(Date.parse(request.query['remove'])));	
+	} else {
+		cassQueryVal.push(new Date());
+	}
 
 	// Build query statement
 	cassQueryStmt += queryCond.join(' AND ');
