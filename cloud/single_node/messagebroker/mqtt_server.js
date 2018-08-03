@@ -32,7 +32,8 @@ server.on('clientConnected', function(client) {
 server.on('published', function(packet, client) {
   //console.log('Published : ', packet.payload);
   if (packet.topic == 'sensor_data') {
-        store_sensor_data(packet.payload.toString());
+    console.log('sensor_data')
+    store_sensor_data(packet.payload.toString());
   } ;
 });
 
