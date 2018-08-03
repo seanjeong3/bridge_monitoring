@@ -131,7 +131,7 @@ def InstallNodejs():
 ##### Webserver Setup #####
 def InstallWebserver():
 	os.system('sudo mkdir -p {0}'.format(WebserverDir))
-	os.system('mv ./webserver {0}'.format(WebserverDir))
+	os.system('sudo mv ./webserver {0}'.format(WebserverDir))
 	os.system('npm install --prefix {0}'.format(WebserverDir))
 
 def UninstallWebserver():
@@ -163,7 +163,7 @@ if arg1 == 'install':
 	UninstallWebserver() 
 	InstallWebserver() 
 
-	
+
 	UninstallMessagebroker() # Remove M/B from the target dir
 	InstallMessagebroker() # Move W/S
 
