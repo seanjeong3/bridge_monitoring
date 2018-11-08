@@ -2,6 +2,12 @@ import os
 import socket
 import sys
 
+# TO DO:
+# Add more user-defined variables (e.g., parameters for webserver)
+# Add run.py
+# Add apply_schema.py
+
+
 # Check argument
 if len(sys.argv) != 2:
 	print('You must provide one argument (install or uninstall).')
@@ -162,8 +168,8 @@ if arg1 == 'install':
 	UninstallCassandra()
 	InstallCassandra()
 	InstallNodejs()
-	UninstallWebserver() 
-	InstallWebserver() 
+	UninstallWebserver()
+	InstallWebserver()
 	UninstallMessagebroker()
 	InstallMessagebroker()
 
